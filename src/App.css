@@ -1,38 +1,270 @@
-.App {
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Animated Gradient Background */
+.container {
+  height: 100vh;
+  background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff9a9e, #fad0c4);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.celebration {
   text-align: center;
+  color: white;
+  position: relative;
+  z-index: 5;
+  padding: 20px;
+  animation: fadeIn 2s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Soft glowing moon background */
+.moon-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  animation: pulse 4s infinite alternate;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes pulse {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.love-title {
+  font-size: 42px;
+  animation: glow 2s infinite alternate;
+}
+
+.name-reveal {
+  font-size: 34px;
+  margin-top: 10px;
+  color: #ffe6f2;
+  animation: fadeUp 2s ease forwards;
+}
+
+.romantic-message {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeUp 3s ease forwards;
+}
+
+.promise-line {
+  margin-top: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  animation: fadeUp 4s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Hearts Background */
+.background-hearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background-hearts::before,
+.background-hearts::after {
+  content: "💖 💕 💘 💗 💓 💞";
+  position: absolute;
+  font-size: 40px;
+  animation: float 15s linear infinite;
+  opacity: 0.3;
+}
+
+.background-hearts::after {
+  left: 60%;
+  animation-delay: 7s;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) rotate(0deg); }
+  100% { transform: translateY(-120vh) rotate(360deg); }
+}
+
+/* Card */
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  animation: fadeIn 1s ease-in-out;
+  z-index: 2;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.love-btn,
+.yes-btn,
+.no-btn {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 10px;
+}
+
+.love-btn,
+.yes-btn {
+  background: #ff2e63;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.love-btn:hover,
+.yes-btn:hover {
+  transform: scale(1.1);
+  background: #e6004c;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.no-btn {
+  background: black;
+  color: white;
+}
+
+.no-btn {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  background: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
+/* Force YES Screen */
+.surprise-card {
+  animation: popIn 0.8s ease;
+}
+
+.naughty-text {
+  color: #ff2e63;
+  font-size: 24px;
+}
+
+.only-yes {
+  font-size: 28px;
+  color: white;
+  background: #ff2e63;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin: 15px 0;
+  animation: glow 1.5s infinite alternate;
+}
+
+.big-yes {
+  transform: scale(1.2);
+}
+
+/* Celebration Screen */
+.celebration {
+  text-align: center;
+  color: white;
+  z-index: 5;
+}
+
+.heart-pop {
+  font-size: 80px;
+  animation: heartBeat 1s infinite alternate;
+}
+
+@keyframes heartBeat {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
+
+.love-title {
+  font-size: 40px;
+  margin-top: 20px;
+  animation: glow 2s infinite alternate;
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid white;
+  width: 0;
+  margin: 20px auto;
+  animation: typing 4s steps(40, end) forwards,
+             blink 0.7s infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.final-line {
+  margin-top: 20px;
+  font-size: 28px;
+  opacity: 0;
+  animation: reveal 3s ease forwards;
+  animation-delay: 3.5s;
+}
+
+@keyframes reveal {
+  to { opacity: 1; }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 30px #ff4da6; }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -3,25 +3,6 @@ import "./App.css";
 
 function App() {
   const [stage, setStage] = useState("start");
-  const [noMoves, setNoMoves] = useState(0);
-  const [noPosition, setNoPosition] = useState({
-    top: "50%",
-    left: "55%"
-  });
-
-  const moveNoButton = () => {
-    if (noMoves < 3) {
-      const randomX = Math.random() * 80;
-      const randomY = Math.random() * 80;
-
-      setNoPosition({
-        top: `${randomY}%`,
-        left: `${randomX}%`
-      });
-
-      setNoMoves(noMoves + 1);
-    }
-  };
 
   return (
     <div className="container">
@@ -45,48 +26,36 @@ function App() {
         <div className="card">
           <h1 className="question">Choose wisely 😌</h1>
 
-          <button
-            className="yes-btn"
-            onClick={() => setStage("accepted")}
-          >
+          <button className="yes-btn disabled-btn" disabled>
             YES 💖
           </button>
 
           <button
             className="no-btn"
-            onMouseEnter={moveNoButton}
-            onClick={() => {
-              if (noMoves >= 3) {
-                setStage("forceYes");
-              }
-            }}
-            style={{
-              top: noPosition.top,
-              left: noPosition.left,
-              position: noMoves < 3 ? "absolute" : "relative"
-            }}
+            onClick={() => setStage("triedNo")}
           >
             NO 😈
           </button>
         </div>
       )}
 
-      {/* FORCE YES SCREEN */}
-      {stage === "forceYes" && (
+      {/* TRIED NO SCREEN */}
+      {stage === "triedNo" && (
         <div className="card surprise-card">
           <h1 className="naughty-text">
-            You tried 3 times 😏  
+            Try NO? 😏
           </h1>
 
-          <h2 className="only-yes">
-            Still… One and Only YESSS 💖✨
-          </h2>
+          <p className="romantic-message">
+            You thought you had a choice?  
+            There’s only one correct answer here 💖
+          </p>
 
           <button
             className="yes-btn big-yes"
             onClick={() => setStage("accepted")}
           >
-            OKAY FINE YES 😍
+            Okay Okay… YES 😍
           </button>
         </div>
       )}
